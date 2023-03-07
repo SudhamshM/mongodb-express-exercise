@@ -1,6 +1,5 @@
 const model = require('../models/story');
 exports.index = (req, res)=>{
-    //res.send('send all stories');
     model.find()
     .then(stories => res.render('./story/index', { stories }))
     .catch(err => next(err))
@@ -10,11 +9,14 @@ exports.new = (req, res)=>{
     res.render('./story/new');
 };
 
-exports.create = (req, res)=>{
-    //res.send('Created a new story');
+exports.create = (req, res, next)=>{
+
     let story = req.body;
-    model.save(story);
-    res.redirect('/stories');
+    story.createdAt = new Date();
+    model.save(story)
+    .then(() => res.redirect('/stories'))
+    .catch(err => next(err));
+    
 };
 
 exports.show = (req, res, next)=>{

@@ -12,10 +12,9 @@ exports.find = () => stories.find().toArray();
 
 exports.findById = id => stories.findOne({_id: new ObjectId(id)});
 
-exports.save = function (story) {
-    story.id = uuidv4();
-    story.createdAt = DateTime.now().toLocaleString(DateTime.DATETIME_SHORT);
-    stories.push(story);
+exports.save = (story) =>
+{
+    return stories.insertOne(story);
 };
 
 exports.updateById = function(id, newStory) {
