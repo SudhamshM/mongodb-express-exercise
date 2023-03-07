@@ -3,6 +3,7 @@ const express = require('express');
 const morgan = require('morgan');
 const methodOverride = require('method-override');
 const storyRoutes = require('./routes/storyRoutes');
+const { MongoClient } = require('mongodb')
 
 //create app
 const app = express();
@@ -10,7 +11,20 @@ const app = express();
 //configure app
 let port = 3000;
 let host = 'localhost';
+let url = 'mongodb://localhost:27017'
 app.set('view engine', 'ejs');
+
+// connect to mongodb
+MongoClient.connect(url)
+.then(client => 
+    {
+        const db = client.db('demos');
+        app.listen(port, host, () =>
+        {
+            console.log("Server is running on port ", port)
+        })
+    })
+.catch(err => console.log(err.message))
 
 //mount middlware
 app.use(express.static('public'));
