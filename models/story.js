@@ -17,24 +17,12 @@ exports.save = (story) =>
     return stories.insertOne(story);
 };
 
-exports.updateById = function(id, newStory) {
-    let story = stories.find(story=>story.id === id);
-    if(story) {
-        story.title = newStory.title;
-        story.content = newStory.content;
-        return true;
-    } else {
-        return false;
-    }
- 
-}
+exports.updateById = (id, newStory) => stories.updateOne
+                    (
+                        {_id: new ObjectId(id)},
+                        {$set: {title: newStory.title, content: newStory.content}}
+                     )
 
 exports.deleteById = function(id) {
-    let index = stories.findIndex(story =>story.id === id);
-    if(index !== -1) {
-        stories.splice(index, 1);
-        return true;
-    } else {
-        return false;
-    }
+    return stories.deleteOne({_id: new ObjectId(id)})
 }
