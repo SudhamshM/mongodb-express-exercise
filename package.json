@@ -1,0 +1,27 @@
+{
+  "name": "module7",
+  "version": "1.0.0",
+  "description": "Integrate MongoDB using Native Node Driver",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SudhamshM/mongodb-express-exercise.git"
+  },
+  "author": "Sudhamsh Mondrati",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SudhamshM/mongodb-express-exercise/issues"
+  },
+  "homepage": "https://github.com/SudhamshM/mongodb-express-exercise#readme",
+  "dependencies": {
+    "ejs": "^3.1.8",
+    "express": "^4.18.2",
+    "luxon": "^3.3.0",
+    "method-override": "^3.0.0",
+    "morgan": "^1.10.0",
+    "uuid": "^9.0.0"
+  }
+}
