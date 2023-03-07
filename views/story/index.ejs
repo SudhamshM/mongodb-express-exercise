@@ -1,9 +1,9 @@
 <%- include('../partials/header.ejs')%>
     <div class = "content">
-        <%if(stories.length) {%>
+        <% if(stories.length) {%>
             <p>Select a story to read</p>
             <%stories.forEach(story=>{%>
-               <a href = "/stories/<%= story.id%>"> <p><%= story.title%></p></a>
+               <a href = "/stories/<%= story._id%>"> <p><%= story.title%></p></a>
            <% });
         } else {%>
             <p>There are no stories to display.</p>

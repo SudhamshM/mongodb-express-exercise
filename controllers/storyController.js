@@ -18,15 +18,19 @@ exports.create = (req, res)=>{
 };
 
 exports.show = (req, res, next)=>{
-    let id = req.params.id;
-    let story = model.findById(id);
-    if(story) {
-        res.render('./story/show', {story});
-    } else {
-        let err = new Error('Cannot find a story with id ' + id);
-        err.status = 404;
-        next(err);
-    }
+    let id = req.params.id; // string type, converted to objectId
+    model.findById(id)
+    .then(story => 
+    {
+        if(story) {
+            res.render('./story/show', {story});
+        } else {
+            let err = new Error('Cannot find a story with id ' + id);
+            err.status = 404;
+            next(err);
+        }
+    })
+    .catch(err => next(err))
    
 };
 
