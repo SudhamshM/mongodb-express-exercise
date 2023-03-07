@@ -1,23 +1,13 @@
 const { DateTime } = require("luxon");
 const {v4: uuidv4} = require('uuid');
-const stories = [
+// need a ref variable for stories collection in mongodb
+let stories;
+exports.getCollection = db => 
 {
-    id: '1',
-    title: 'A funny story',
-    content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In volutpat lectus et ullamcorper posuere.',
-    author: 'Sudhamsh',
-    createdAt: DateTime.now().toLocaleString(DateTime.DATETIME_SHORT)
-},
-{
-    id: '2',
-    title: 'It is rainning',
-    content: 'Cras eget urna non quam tempor fermentum ac nec risus. Morbi ornare condimentum accumsan.',
-    author: 'Michael',
-    createdAt: DateTime.local(2021, 2, 12, 18, 0).toLocaleString(DateTime.DATETIME_SHORT)
+    stories = db.collection('stories')
 }
-];
 
-exports.find = () => stories;
+exports.find = () => stories.find().toArray();
 
 exports.findById = id => stories.find(story=>story.id === id);
 

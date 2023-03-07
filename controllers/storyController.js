@@ -1,8 +1,9 @@
 const model = require('../models/story');
 exports.index = (req, res)=>{
     //res.send('send all stories');
-    let stories = model.find();
-    res.render('./story/index', {stories});
+    model.find()
+    .then(stories => res.render('./story/index', { stories }))
+    .catch(err => next(err))
 };
 
 exports.new = (req, res)=>{
